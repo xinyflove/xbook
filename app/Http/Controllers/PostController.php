@@ -10,6 +10,10 @@ class PostController extends Controller
     // 列表
     public function index()
     {
+        $app = app();
+        $log = $app->make('log');
+        $log->info('post_index', ['data'=>'this is post index']);
+        
         $posts = Post::orderBy('created_at', 'desc')->paginate(6);
         return view('post/index', compact('posts'));
     }
@@ -45,7 +49,9 @@ class PostController extends Controller
         */
         
         //$params = ['title'=>request('title'), 'content'=>request('content')];
-        $post = Post::create(request(['title', 'content']));
+        $user_id = \Auth::id();
+        $params = array_merge(request(['title', 'content']), compact('user_id'));
+        $post = Post::create($params);
         
         // 渲染
         return redirect('/posts');
@@ -61,11 +67,13 @@ class PostController extends Controller
     public function update(Post $post)
     {
         // 验证
-
         $this->validate(request(), [
             'title' => 'required|string|max:100|min:5',
             'content' => 'required|string|min:10',
         ]);
+
+        // 验证修改权限
+        $this->authorize('update', $post);
 
         // 逻辑
         $post->title = request('title'); 
@@ -79,7 +87,8 @@ class PostController extends Controller
     // 删除逻辑
     public function delete(Post $post)
     {
-        // TODO: 用户的权限验证
+        // 验证删除权限
+        $this->authorize('delete', $post);
 
         $post->delete();
 
