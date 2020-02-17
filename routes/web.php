@@ -30,6 +30,8 @@ Route::put('/posts/{post}', '\App\Http\Controllers\PostController@update');
 Route::get('/posts/{post}/delete', '\App\Http\Controllers\PostController@delete');
 // 图片上传
 Route::post('/posts/image/upload', '\App\Http\Controllers\PostController@imageUpload');
+// 提交评论
+Route::post('/posts/{post}/comment', '\App\Http\Controllers\PostController@comment');
 
 /* 用户模块 */
 // 注册页面
