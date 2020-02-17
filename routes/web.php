@@ -41,15 +41,20 @@ Route::get('/posts/{post}/unzan', '\App\Http\Controllers\PostController@unzan');
 // 注册页面
 Route::get('/register', '\App\Http\Controllers\RegisterController@index');
 // 注册行为
-Route::post('/register', '\App\Http\Controllers\RegisterController@register'); 
+Route::post('/register', '\App\Http\Controllers\RegisterController@register');
 // 登录页面
-Route::get('/login', '\App\Http\Controllers\LoginController@index'); 
+Route::get('/login', '\App\Http\Controllers\LoginController@index');
 // 登录行为
-Route::post('/login', '\App\Http\Controllers\LoginController@login'); 
+Route::post('/login', '\App\Http\Controllers\LoginController@login');
 // 登出行为
-Route::get('/logout', '\App\Http\Controllers\LoginController@logout'); 
+Route::get('/logout', '\App\Http\Controllers\LoginController@logout');
 // 个人设置
-Route::get('/user/me/setting', '\App\Http\Controllers\UserController@setting'); 
+Route::get('/user/me/setting', '\App\Http\Controllers\UserController@setting');
 // 个人设置操作
-Route::post('/user/me/setting', '\App\Http\Controllers\UserController@settingStore'); 
-//
+Route::post('/user/me/setting', '\App\Http\Controllers\UserController@settingStore');
+// 个人中心
+Route::get('/user/{user}', '\App\Http\Controllers\UserController@show');
+// 关注用户
+Route::post('/user/{user}/fan', '\App\Http\Controllers\UserController@fan');
+// 取消关注
+Route::post('/user/{user}/unfan', '\App\Http\Controllers\UserController@unfan');
