@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Dbeav;
+use Illuminate\Database\Eloquent\Builder;
 
 // 表 => posts
 class Post extends Dbeav
@@ -29,5 +30,25 @@ class Post extends Dbeav
     public function zans()
     {
         return $this->hasMany(\App\Zan::class);
+    }
+
+    // 属于某个作者的文章
+    public function scopeAuthorBy(Builder $query, $user_id)
+    {
+        return $query->where('user_id', $user_id);
+    }
+    
+    // 文章所属专题
+    public function postTopics()
+    {
+        return $this->hasMany(\App\PostTopic::class, 'post_id', 'id');
+    }
+
+    // 不属于某个专题的文章
+    public function scopeTopicNotBy(Builder $query, $topic_id)
+    {
+        $query->doesntHave('postTopics', 'and', function ($q) use ($topic_id) {
+            $q->where('topic_id', $topic_id);
+        });
     }
 }

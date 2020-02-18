@@ -58,3 +58,14 @@ Route::get('/user/{user}', '\App\Http\Controllers\UserController@show');
 Route::post('/user/{user}/fan', '\App\Http\Controllers\UserController@fan');
 // 取消关注
 Route::post('/user/{user}/unfan', '\App\Http\Controllers\UserController@unfan');
+
+/*专题模块*/
+// 专题详情页
+Route::get('/topic/{topic}', '\App\Http\Controllers\TopicController@show');
+// 专题投稿
+Route::post('/topic/{topic}/submit', '\App\Http\Controllers\TopicController@submit');
+
+
+
+
+

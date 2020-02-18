@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Post;
 use App\Zan;
 use Illuminate\Http\Request;
-use \App\Post;
 
 class PostController extends Controller
 {
@@ -142,4 +142,6 @@ class PostController extends Controller
         $post->zan(\Auth::id())->delete();
         return back();
     }
+    
+    
 }
