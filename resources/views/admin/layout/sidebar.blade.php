@@ -4,6 +4,7 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
+            @can('system')
             <li class="treeview active">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>系统管理</span>
@@ -15,21 +16,28 @@
                     <li><a href="/admin/roles"><i class="fa fa-circle-o"></i> 角色管理</a></li>
                 </ul>
             </li>
+            @endcan
+            @can('post')
             <li class="active treeview">
                 <a href="/admin/posts">
                     <i class="fa fa-dashboard"></i> <span>文章管理</span>
                 </a>
             </li>
+            @endcan
+            @can('topic')
             <li class="active treeview">
                 <a href="/admin/topics">
                     <i class="fa fa-dashboard"></i> <span>专题管理</span>
                 </a>
             </li>
+            @endcan
+            @can('notice')
             <li class="active treeview">
                 <a href="/admin/notices">
                     <i class="fa fa-dashboard"></i> <span>通知管理</span>
                 </a>
             </li>
+            @endcan
         </ul>
     </section>
     <!-- /.sidebar -->

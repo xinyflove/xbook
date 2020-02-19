@@ -37,11 +37,11 @@
         <form action="/admin/login" method="post">
             {{ csrf_field() }}
             <div class="form-group has-feedback">
-                <input name="name" type="text" class="form-control" placeholder="名字">
+                <input name="name" type="text" class="form-control" placeholder="名字" tabindex="1">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input name="password" type="password" class="form-control" placeholder="密码">
+                <input name="password" type="password" class="form-control" placeholder="密码" tabindex="2">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
