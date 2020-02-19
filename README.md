@@ -1,7 +1,7 @@
 # xbook
 类似简书网的网站
 
-进度 10-1
+进度 13-1
 
 测试数据库配置是否正确
 
@@ -16,3 +16,13 @@ php artisan migrate:install
 `.env` 文件添加 `FILESYSTEM_DRIVER=public` 配置
 
 执行命令 `php artisan storage:link`，`./public/storage/` 目录 链接到 `./storage/app/public/` 目录
+
+
+
+adminLTE主题下载
+
+```
+composer require "almasaeed2010/adminlte=~2.0"
+```
+
+复制 `vendor/almasaeed2010/adminlte` 文件夹到 `public` 目录下
