@@ -17,6 +17,8 @@ class PostController extends Controller
         $log->info('post_index', ['data'=>'this is post index']);
         
         $posts = Post::orderBy('created_at', 'desc')->withCount(['comments', 'zans'])->paginate(6);
+        $posts->load('user');// 预加载user关联模型
+
         return view('post/index', compact('posts'));
     }
 
