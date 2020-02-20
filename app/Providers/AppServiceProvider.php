@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // mb4string 1000/4=250
-        Schema::defaultStringLength(250);
+        Schema::defaultStringLength(249);
         
         \View::composer('layout.sidebar', function ($view){
             $topics = \App\Topic::all();
