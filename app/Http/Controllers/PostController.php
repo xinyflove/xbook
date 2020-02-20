@@ -12,9 +12,10 @@ class PostController extends Controller
     // 列表
     public function index()
     {
-        $app = app();
+        // 记录日志
+        /*$app = app();
         $log = $app->make('log');
-        $log->info('post_index', ['data'=>'this is post index']);
+        $log->info('post_index', ['data'=>'this is post index']);*/
         
         $posts = Post::orderBy('created_at', 'desc')->withCount(['comments', 'zans'])->paginate(6);
         $posts->load('user');// 预加载user关联模型
@@ -103,7 +104,7 @@ class PostController extends Controller
     // 上传图片
     public function imageUpload(Request $request)
     {
-        $path = $request->file('wangEditorH5File')->storePublicly(md5(time()));
+        $path = $request->file('wangEditorH5File')->storePublicly(md5(\Auth::id() . time()));
         return asset('storage/' . $path);
     }
 

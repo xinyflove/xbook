@@ -9,6 +9,12 @@ class LoginController extends Controller
     // 登录页面
     public function index()
     {
+        if(\Auth::check())
+        {
+            // 如果已经登陆，进入 文章列表页
+            return redirect("/posts");
+        }
+
         return view('login.index');
     }
 
@@ -18,13 +24,13 @@ class LoginController extends Controller
         // 验证
         $this->validate(request(), [
             'email' => 'required|email',
-            'password' => 'required|min:5|max:10',
+            'password' => 'required|min:6|max:20',
             'is_remember' => 'integer'
         ]);
 
         // 逻辑
         $user = request(['email', 'password']);
-        $is_remember = request('is_remember');
+        $is_remember = boolval(request('is_remember'));
         if (\Auth::attempt($user, $is_remember))
         {
             return redirect('/posts');
