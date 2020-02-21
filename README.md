@@ -1,9 +1,51 @@
 # xbook
-类似简书网的网站
 
-进度 17-1
+> 类似简书的网站
 
-测试数据库配置是否正确
+## 软件架构
+
+- Laravel 5.4
+- PHP 5.6+
+- MySQL
+
+## 安装教程
+
+### 环境要求
+
+- Nginx/Apache/IIS
+- MySQL5.5+
+- PHP5.6+
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Mbstring PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
+
+建议使用环境：Linux + Nginx 1.14 + PHP 7 + MySQL 5.6
+
+### 安装部署
+
+1. 下载源码
+
+从 [https://github.com/xinyflove/xbook](https://github.com/xinyflove/xbook) 下载代码到本地
+
+2. 修改`.env`文件
+
+```
+cp .env.dev .env
+php artisan key:generate
+```
+
+修改 数据库配置、`APP_URL` 配置
+
+3. 执行 composer 命令
+
+```bash
+composer install
+composer dump-autoload
+```
+
+4. 测试数据库配置是否正确
 
 ```bash
 php artisan migrate:install
@@ -11,27 +53,43 @@ php artisan migrate:install
 
 如果出现`Migration table created successfully.`则配置正确。
 
-**文件储存配置**
+5. 执行 `migrate`命令安装表
+
+```bash
+php artisan migrate
+```
+
+6. 确认文件权限
+
+`storage` 和 `bootstrap/cache` 目录应该允许你的 Web 服务器写入，否则 Laravel 将无法写入。
+
+7. 文件储存配置
 
 `.env` 文件添加 `FILESYSTEM_DRIVER=public` 配置
 
 执行命令 `php artisan storage:link`，`./public/storage/` 目录 链接到 `./storage/app/public/` 目录
 
+8. 启动项目
 
+本地开发
 
-adminLTE主题下载
-
+```bash
+php artisan serve
 ```
-composer require "almasaeed2010/adminlte=~2.0"
-```
 
-复制 `vendor/almasaeed2010/adminlte` 文件夹到 `public` 目录下
+Web 服务器配置 [传送门](https://learnku.com/docs/laravel/5.4/installation/1216#d67c05)
 
+## 功能介绍
 
-> 6-9 文章路由控制的实现
-  6-10 个人设置页面上传头像功能实现
-  15-1 权限管理模块基本介绍
-  18-1 性能优化章节介绍
-  18-2 使用Laravel自带的优化命令优化
-  18-3 使用debugbar进行问题定位
-  18-5 使用DB_listen进行慢sql的查询
+- 文章模块
+- 用户注册登录注册模块
+- 文章评论模块
+- 文章点赞模块
+- 个人中心模块
+- 文章专题模块
+- 管理人员模块
+- 审核模块
+- 权限模块
+- 专题管理模块
+- 系统通知模块
+
