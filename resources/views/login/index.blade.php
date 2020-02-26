@@ -14,12 +14,13 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="http://v3.bootcss.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="http://v3.bootcss.com/examples/signin/signin.css" rel="stylesheet">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="http://xinyufeng.net/images/favicon-32x32-next.png?v=5.1.4">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://xinyufeng.net/images/favicon-16x16-next.png?v=5.1.4">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

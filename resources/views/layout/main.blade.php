@@ -15,11 +15,12 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-
     <!-- Custom styles for this template -->
     <link href="/css/blog.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/wangEditor.min.css">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

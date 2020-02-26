@@ -11,7 +11,17 @@
 |
 */
 
-Route::get('/', "\App\Http\Controllers\LoginController@index");
+Route::get('/', 'LoginController@index');
+// 注册页面
+Route::get('/register', '\App\Http\Controllers\RegisterController@index');
+// 注册行为
+Route::post('/register', '\App\Http\Controllers\RegisterController@register');
+// 登录页面
+Route::get('/login', 'LoginController@index')->name('login');
+// 登录行为
+Route::post('/login', '\App\Http\Controllers\LoginController@login');
+// 登出行为
+Route::get('/logout', '\App\Http\Controllers\LoginController@logout');
 
 Route::group(['middleware' => 'auth:web'], function (){
 
@@ -58,18 +68,3 @@ Route::group(['middleware' => 'auth:web'], function (){
     // 通知
     Route::get('/notices', '\App\Http\Controllers\NoticeController@index');
 });
-
-// 注册页面
-Route::get('/register', '\App\Http\Controllers\RegisterController@index');
-// 注册行为
-Route::post('/register', '\App\Http\Controllers\RegisterController@register');
-// 登录页面
-Route::get('/login', '\App\Http\Controllers\LoginController@index')->name('login');
-// 登录行为
-Route::post('/login', '\App\Http\Controllers\LoginController@login');
-// 登出行为
-Route::get('/logout', '\App\Http\Controllers\LoginController@logout');
-
-include_once 'admin.php';
-
-
