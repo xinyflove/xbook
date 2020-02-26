@@ -16,9 +16,8 @@ Route::group(['middleware'=>'auth:admin'], function (){
     // 首页
     Route::get('/home', 'HomeController@index');
 
+    /*管理人员模块*/
     Route::group(['middleware'=>'can:system'], function (){
-
-        /*管理人员模块*/
         // 管理员列表页面
         Route::get('/users', 'UserController@index');
         // 创建管理员页面
@@ -51,26 +50,23 @@ Route::group(['middleware'=>'auth:admin'], function (){
         Route::post('/permissions/store', 'PermissionController@store');
     });
 
+    /*文章审核模块*/
     Route::group(['middleware'=>'can:post'], function (){
-
-        /*文章审核模块*/
         // 文章列表
         Route::get('/posts', 'PostController@index');
         // 更新文章状态
         Route::post('/posts/{post}/status', 'PostController@status');
     });
 
+    /*专题模块*/
     Route::group(['middleware'=>'can:topic'], function (){
-
-        /*专题模块*/
         Route::resource('/topics', 'TopicController', [
             'only' => ['index', 'create', 'store', 'destroy']
         ]);
     });
 
+    /*专题模块*/
     Route::group(['middleware'=>'can:notice'], function (){
-
-        /*专题模块*/
         Route::resource('/notices', 'NoticeController', [
             'only' => ['index', 'create', 'store']
         ]);
