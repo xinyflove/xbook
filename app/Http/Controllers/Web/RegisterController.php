@@ -1,19 +1,30 @@
 <?php
 
-namespace App\Http\ControllersWeb;
+namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
-use \App\User;
+use \App\Models\User;
 
+/**
+ * 注册控制器
+ * Class RegisterController
+ * @package App\Http\Controllers\Web
+ */
 class RegisterController extends Controller
 {
-    // 注册页面
+    /**
+     * 注册页面
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         return view('register.index');
     }
 
-    // 注册行为
+    /**
+     * 注册行为
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function register()
     {
         // 验证
@@ -30,6 +41,6 @@ class RegisterController extends Controller
         $user = User::create(compact('name', 'email', 'password'));
 
         // 渲染
-        return redirect('/login');
+        return redirect('login');
     }
 }

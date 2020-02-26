@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 class AdminRole extends Dbeav
 {
@@ -9,7 +9,8 @@ class AdminRole extends Dbeav
     // 获取角色的所有权限
     public function permissions()
     {
-        return $this->belongsToMany(\App\AdminPermission::class, 'admin_permission_role', 'role_id', 'permission_id')->withPivot(['role_id', 'permission_id']);
+        return $this->belongsToMany(AdminPermission::class, 'admin_permission_role', 'role_id', 'permission_id')
+            ->withPivot(['role_id', 'permission_id']);
     }
     
     // 给角色赋予权限

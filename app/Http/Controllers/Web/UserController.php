@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
+/**
+ * 个人中心控制器
+ * Class UserController
+ * @package App\Http\Controllers\Web
+ */
 class UserController extends Controller
 {
-    // 个人中心
+    /**
+     * 个人中心
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(User $user)
     {
         // 这个人的信息，包含关注/粉丝/文章数
@@ -26,16 +36,23 @@ class UserController extends Controller
         
         return view('user/show', compact('user', 'posts', 'susers', 'fusers'));
     }
-    
-    // 个人设置页面
+
+    /**
+     * 个人设置页面
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function setting()
     {
-        $me = \Auth::user();
+        $me = Auth::user();
         
         return view('user.setting', compact('me'));
     }
 
-    // 个人设置行为
+    /**
+     * 个人设置行为
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function settingStore(Request $request)
     {
         $this->validate(request(),[
@@ -43,17 +60,18 @@ class UserController extends Controller
         ]);
 
         $name = request('name');
-        $user = \Auth::user();
+        $user = Auth::user();
         if ($name != $user->name)
         {
-            if(\App\User::where('name', $name)->count() > 0) {
+            if(User::where('name', $name)->count() > 0)
+            {
                 return back()->withErrors(array('message' => '用户名称已经被注册'));
             }
             $user->name = request('name');
         }
         if ($request->file('avatar'))
         {
-            $path = $request->file('avatar')->storePublicly(md5(\Auth::id() . time()));
+            $path = $request->file('avatar')->storePublicly(md5(Auth::id() . time()));
             $user->avatar = "/storage/". $path;
         }
 
@@ -61,11 +79,15 @@ class UserController extends Controller
         
         return back();
     }
-    
-    // 关注用户
+
+    /**
+     * 关注用户
+     * @param User $user
+     * @return array
+     */
     public function fan(User $user)
     {
-        $me = \Auth::user();
+        $me = Auth::user();
         $me->doFan($user->id);
 
         return [
@@ -73,11 +95,15 @@ class UserController extends Controller
             'msg' => ''
         ];
     }
-    
-    // 取消关注
+
+    /**
+     * 取消关注
+     * @param User $user
+     * @return array
+     */
     public function unfan(User $user)
     {
-        $me = \Auth::user();
+        $me = Auth::user();
         $me->doUnFan($user->id);
 
         return [

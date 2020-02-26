@@ -1,8 +1,6 @@
 <?php
 
-namespace App;
-
-use App\Dbeav;
+namespace App\Models;
 
 class PostTopic extends Dbeav
 {

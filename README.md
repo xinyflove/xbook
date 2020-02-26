@@ -93,3 +93,29 @@ Web 服务器配置 [传送门](https://learnku.com/docs/laravel/5.4/installatio
 - 专题管理模块
 - 系统通知模块
 
+## 开发说明
+
+### 生成 controller
+
+```bash
+php artisan make:controller Web/TestController
+php artisan make:controller Api/TestController
+php artisan make:controller AdminApi/TestController
+```
+
+### 创建 Model
+
+```bash
+php artisan make:model Models/User
+```
+
+### 数据迁移
+
+```bash
+php artisan make:migration create_user_table
+```
+
+## BUG
+
+1. 开启 debugbar 会导致上传图片后插入富文本错误
+2. 使用函数 `str_limit` 如果在截取中含有图片数据，会导致页面出问题

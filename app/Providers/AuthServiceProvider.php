@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\AdminPermission;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -14,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         //'App\Model' => 'App\Policies\ModelPolicy',
-        'App\Post' => 'App\Policies\PostPolicy'// 注册文章策略
+        'App\Models\Post' => 'App\Policies\PostPolicy'// 注册文章策略
     ];
 
     /**
@@ -26,7 +27,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        $permissions = \App\AdminPermission::all();
+        $permissions = AdminPermission::all();
         foreach ($permissions as $permission)
         {
             Gate::define($permission->name, function ($user) use ($permission) {

@@ -19,7 +19,7 @@ class SendMessage implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(\App\Notice $notice)
+    public function __construct(\App\Models\Notice $notice)
     {
         // 定义任务step1
         $this->__notice = $notice;
@@ -33,7 +33,7 @@ class SendMessage implements ShouldQueue
     public function handle()
     {
         // // 定义任务step2 通知每个用户系统消息
-        $users = \App\User::all();
+        $users = \App\Models\User::all();
         foreach ($users as $user)
         {
             $user->addNotice($this->__notice);

@@ -2,24 +2,40 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\AdminPermission;
+use App\Models\AdminRole;
 use Illuminate\Http\Request;
 
+/**
+ * 角色管理控制器
+ * Class RoleController
+ * @package App\Http\Controllers\Admin
+ */
 class RoleController extends Controller
 {
-    // 角色列表页
+    /**
+     * 角色列表页
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
-        $roles = \App\AdminRole::paginate(10);
+        $roles = AdminRole::paginate(10);
         return view('admin.role.index', compact('roles'));
     }
-    
-    // 角色创建页面
+
+    /**
+     * 角色创建页面
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         return view('admin.role.add');
     }
-    
-    // 角色创建行为
+
+    /**
+     * 角色创建行为
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store()
     {
         $this->validate(request(), [
@@ -27,31 +43,39 @@ class RoleController extends Controller
             'description' => 'required',
         ]);
         
-        \App\AdminRole::create(request(['name', 'description']));
+        AdminRole::create(request(['name', 'description']));
         
-        return redirect('/admin/roles');
+        return redirect('admin/roles');
     }
-    
-    // 角色权限列表
-    public function permission(\App\AdminRole $role)
+
+    /**
+     * 角色权限列表
+     * @param AdminRole $role
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function permission(AdminRole $role)
     {
         // 获取所有权限
-        $permissions = \App\AdminPermission::all();
+        $permissions = AdminPermission::all();
         
         // 获取当前角色的权限
         $myPermissions = $role->permissions;
         
         return view('admin.role.permission', compact('permissions', 'myPermissions', 'role'));
     }
-    
-    // 保存角色权限
-    public function storePermission(\App\AdminRole $role)
+
+    /**
+     * 保存角色权限
+     * @param AdminRole $role
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function storePermission(AdminRole $role)
     {
         $this->validate(request(), [
             'permissions' => 'required|array'
         ]);
 
-        $permissions = \App\AdminPermission::findMany(request('permissions'));
+        $permissions = AdminPermission::findMany(request('permissions'));
         $myPermissions = $role->permissions;
 
         // 要增加的

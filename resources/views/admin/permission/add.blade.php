@@ -30,6 +30,7 @@
                                 </div>
                             </div>
                             <!-- /.box-body -->
+                            @include('admin.layout.error')
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">提交</button>
                             </div>
