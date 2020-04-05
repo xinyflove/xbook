@@ -16,3 +16,19 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
+    // 不需要登录和权限验证
+    Route::group(['prefix' => 'test'], function () {
+        Route::any('/', 'TestController@index'); // init test
+    });
+
+    Route::get('user/login', 'UserController@login')->name('api.v1.user.login'); // 用户登录
+
+    /*需要登录*/
+    Route::group(['middleware' => ['checkuser']], function () {
+        Route::group(['prefix' => 'user'], function () {
+            Route::get('/', 'UserController@inde'); // 用户首页
+        });
+    });
+});
