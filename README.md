@@ -119,3 +119,4 @@ php artisan make:migration create_user_table
 
 1. 开启 debugbar 会导致上传图片后插入富文本错误
 2. 使用函数 `str_limit` 如果在截取中含有图片数据，会导致页面出问题
+3. 安装时把 AuthServiceProvider.php 文件中的 boot() 方法 中的权限判断先注释掉，安装成功后取消注释

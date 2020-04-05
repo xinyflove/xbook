@@ -65,7 +65,7 @@ Route::group(['middleware'=>'auth:admin'], function (){
         ]);
     });
 
-    /*专题模块*/
+    /*消息模块*/
     Route::group(['middleware'=>'can:notice'], function (){
         Route::resource('/notices', 'NoticeController', [
             'only' => ['index', 'create', 'store']
