@@ -99,8 +99,9 @@ Web 服务器配置 [传送门](https://learnku.com/docs/laravel/5.4/installatio
 
 ```bash
 php artisan make:controller Web/TestController
-php artisan make:controller Api/TestController
-php artisan make:controller AdminApi/TestController
+php artisan make:controller Admin/TestController
+php artisan make:controller Api/V1/TestController
+php artisan make:controller AdminApi/V1/TestController
 ```
 
 ### 创建 Model
