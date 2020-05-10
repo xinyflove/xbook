@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
+            'cors',
         ],
 
         'admin' => [
@@ -67,5 +68,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'checkuser' => \App\Http\Middleware\CheckUser::class,
+        'cors' => \App\Http\Middleware\EnableCrossRequest::class,
     ];
 }

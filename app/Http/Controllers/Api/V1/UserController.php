@@ -24,14 +24,14 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'user_name' => 'required|min:3',
-            'password' => 'required|min:6|max:18'
+            'username' => 'required',
+            'password' => 'required'
         ]);
         if ($validator->fails()) {
             return error_json(10001);
         };
 
-        $params = request(['user_name', 'password']);
+        $params = request(['username', 'password']);
 
         if (!Auth::attempt($params)) {
             return error_json(10102);
@@ -45,5 +45,10 @@ class UserController extends Controller
         ];
 
         return success_json($data);
+    }
+
+    public function loginInfo(Request $request)
+    {
+
     }
 }

@@ -23,12 +23,12 @@ Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
         Route::any('/', 'TestController@index'); // init test
     });
 
-    Route::get('user/login', 'UserController@login')->name('api.v1.user.login'); // 用户登录
+    Route::post('user/login', 'UserController@login')->name('api.v1.user.login'); // 用户登录
 
     /*需要登录*/
     Route::group(['middleware' => ['checkuser']], function () {
         Route::group(['prefix' => 'user'], function () {
-            Route::get('/', 'UserController@inde'); // 用户首页
+            Route::post('/login_info', 'UserController@loginInfo'); // 用户登录信息
         });
     });
 });
