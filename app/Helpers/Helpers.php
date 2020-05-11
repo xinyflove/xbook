@@ -64,6 +64,22 @@ if (! function_exists('error_json'))
     }
 }
 
+if (! function_exists('error_msg'))
+{
+    /**
+     * 返回错误消息
+     * @param $code
+     * @return mixed
+     * @author PeakXin<xinyflove@sina.com>
+     */
+    function error_msg($code)
+    {
+        $msg = config('error.10000');
+        !empty(config('error.'.$code)) && $msg = config('error.'.$code);
+        return $msg;
+    }
+}
+
 if (! function_exists('generate_token'))
 {
     /**
