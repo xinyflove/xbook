@@ -47,8 +47,18 @@ class UserController extends Controller
         return success_json($data);
     }
 
+    /**
+     * 用户登录信息
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @author PeakXin<xinyflove@sina.com>
+     */
     public function loginInfo(Request $request)
     {
+        $data = [
+            'name' => $request->userInfo['name']
+        ];
 
+        return success_json($data);
     }
 }

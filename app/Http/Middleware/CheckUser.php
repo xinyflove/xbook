@@ -22,7 +22,7 @@ class CheckUser
     public function handle($request, Closure $next)
     {
         $request->userInfo = [];// 登录用户数据
-        $token = $request->header('token', '');dd($token);
+        $token = $request->header('token', '');
         $inputToken = $request->input('token', '');
         if ($inputToken) $token = $inputToken;
         if (empty($token))
